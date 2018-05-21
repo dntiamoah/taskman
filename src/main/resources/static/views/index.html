@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Task Management</title>
+    <style>.active {
+        color: red;
+        font-weight: bold;
+    }</style>
+</head>
+<script src="js/lib/angular.js"></script>
+<script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+<body ng-app="buzz">
+<div class="container">
+    <ui-view></ui-view>
+</div>
+</body>
+<script src="js/app/app.js"></script>
+<script src="js/app/task.list.ctrl.js"></script>
+<script src="js/app/task.edit.ctrl.js"></script>
+<script src="js/app/task.add.ctrl.js"></script>
+<script src="js/app/TaskService.js"></script>
+
+<link rel="stylesheet" href="css/lib/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/app/app.css"/>
+</html>

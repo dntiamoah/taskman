@@ -1,0 +1,54 @@
+<div class="well well-sm">
+    <h2>Tasks</h2>
+</div>
+<!-- Handle errors -->
+<div class="alert alert-danger" role="alert" ng-if="ListController.errorMessage">{{errorMessage}}</div>
+<div ng-if="ListController.task">
+    <label for="orderBy" class="col-sm-2 control-label">Order By</label>
+    <div>
+        <select class="form-control" id="orderBy" ng-change="getSorted()" ng-model="sortBy">
+            <option value="" disabled selected="" class="ng-binding">Order by</option>
+            <option value="FirstName">First Name</option>
+            <option value="LastName">Last Name</option>
+            <option value="ScheduledDate">Scheduled Date</option>
+        </select>
+    </div>
+</div>
+<!-- Table -->
+<table class="table table-hover table-condensed table table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Schedule Date</th>
+        <th>Notes</th>
+        <th>Status</th>
+        <th style="width: 5%"></th>
+        <th style="width: 5%">
+            <button type="button" class="btn btn-primary btn-lg" ng-click="addTask()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> ADD
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr data-ng-repeat="task in allTasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.firstName }}</td>
+        <td>{{ task.lastName }}</td>
+        <td>{{ task.scheduledDate | date:'dd/MM/yyyy'}}</td>
+        <td>{{ task.notes }}</td>
+        <td>{{ task.status }}</td>
+        <td/>
+        <td>
+            <button type="button" class="btn btn-info"
+                    ng-click="editTask(task)">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> EDIT
+            </button>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+<!-- table -->
