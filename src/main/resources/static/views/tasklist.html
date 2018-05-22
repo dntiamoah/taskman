@@ -3,17 +3,20 @@
 </div>
 <!-- Handle errors -->
 <div class="alert alert-danger" role="alert" ng-if="ListController.errorMessage">{{errorMessage}}</div>
-<div ng-if="ListController.task">
-    <label for="orderBy" class="col-sm-2 control-label">Order By</label>
-    <div>
-        <select class="form-control" id="orderBy" ng-change="getSorted()" ng-model="sortBy">
-            <option value="" disabled selected="" class="ng-binding">Order by</option>
-            <option value="FirstName">First Name</option>
-            <option value="LastName">Last Name</option>
-            <option value="ScheduledDate">Scheduled Date</option>
-        </select>
+
+<!-- Filter -->
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <label for="orderBy" class="col-sm-2 input-group-text">Order By</label>
     </div>
+    <select class="custom-select" id="orderBy" ng-model="sortBy" ng-change="orderTasks()">
+        <option value="" disabled selected="" class="ng-binding">Order by</option>
+        <option value="FirstName">First Name</option>
+        <option value="LastName">Last Name</option>
+        <option value="ScheduledDate">Scheduled Date</option>
+    </select>
 </div>
+
 <!-- Table -->
 <table class="table table-hover table-condensed table table-striped">
     <thead>

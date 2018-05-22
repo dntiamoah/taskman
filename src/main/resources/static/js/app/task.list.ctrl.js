@@ -7,11 +7,12 @@
 
                 $scope.task;
                 $scope.errorMessage = null;
-                $scope.allTasks=null;
+                $scope.allTasks = null;
+                $scope.sortBy;
 
-                TaskService.getAllTasks().then(function(tasks) {
+                TaskService.getAllTasks().then(function (tasks) {
                     $scope.allTasks = tasks.data;
-                }, function(error) {
+                }, function (error) {
                     $scope.errorMessage = error;
                 });
 
@@ -20,11 +21,17 @@
                     $state.go('addTask');
                 };
 
-               $scope.editTask = function (task) {
-                   $state.go('editTask', {taskId: task.id})
-               }
+                $scope.editTask = function (task) {
+                    $state.go('editTask', {taskId: task.id})
+                };
 
+                $scope.orderTasks = function () {
+                    TaskService.getAllOrderBy($scope.sortBy).then(function (tasks) {
+                        $scope.allTasks = tasks.data;
+                    }, function (error) {
+                        $scope.errorMessage = error;
+                    })
+                }
             }]
         )
-})()
-;
+})();

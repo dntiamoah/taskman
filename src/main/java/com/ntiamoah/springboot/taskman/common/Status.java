@@ -7,5 +7,5 @@ public enum Status {
 
     Started,
     Completed,
-    Late,
+    Late
 }

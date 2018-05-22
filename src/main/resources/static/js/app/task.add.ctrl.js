@@ -10,9 +10,7 @@
 
             taskCtrl.errorMessage;
             taskCtrl.action = "New";
-            taskCtrl.task = $state.params.task;
-            taskCtrl.task.address = $state.params.address;
-            taskCtrl.addresses;
+            taskCtrl.task = {};
             taskCtrl.titles;
 
             function cancelAction() {

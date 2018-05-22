@@ -22,6 +22,10 @@
                 return $http.get("/titles");
             }
 
+            service.getAllOrderBy = function(orderBy) {
+                return $http.get("/task/findAllOrderBy/" + orderBy);
+            }
+
             return service;
         }])
 })();

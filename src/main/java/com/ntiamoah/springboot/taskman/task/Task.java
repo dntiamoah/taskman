@@ -1,5 +1,6 @@
 package com.ntiamoah.springboot.taskman.task;
 
+import com.ntiamoah.springboot.taskman.common.Status;
 import com.ntiamoah.springboot.taskman.common.Title;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Task implements Serializable {
     private String lastName;
     private LocalDate scheduledDate;
     private String notes;
+    private Status status;
 
 
 
@@ -40,6 +42,15 @@ public class Task implements Serializable {
 
     public void setTitle(Title title) {
         this.title = title;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @NotNull
