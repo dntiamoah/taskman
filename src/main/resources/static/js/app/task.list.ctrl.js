@@ -8,7 +8,8 @@
                 $scope.task;
                 $scope.errorMessage = null;
                 $scope.allTasks = null;
-                $scope.sortBy;
+                $scope.sortBy = null;
+                $scope.sortDir = "Asc";
 
                 TaskService.getAllTasks().then(function (tasks) {
                     $scope.allTasks = tasks.data;
@@ -26,7 +27,9 @@
                 };
 
                 $scope.orderTasks = function () {
-                    TaskService.getAllOrderBy($scope.sortBy).then(function (tasks) {
+                    var sortByDir = $scope.sortBy+$scope.sortDir;
+
+                    TaskService.getAllOrderBy(sortByDir).then(function (tasks) {
                         $scope.allTasks = tasks.data;
                     }, function (error) {
                         $scope.errorMessage = error;

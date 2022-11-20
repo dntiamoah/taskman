@@ -1,21 +1,18 @@
 package com.ntiamoah.springboot.taskman.task;
 
-import com.ntiamoah.springboot.taskman.common.Title;
 import com.ntiamoah.springboot.taskman.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by dntiamoah on 17/05/2018.
  */
 @RestController
-@RequestMapping("task")
+@RequestMapping("tasks")
 public class TaskController {
 
     @Autowired
@@ -30,10 +27,10 @@ public class TaskController {
         return taskList;
     }
 
-    @GetMapping("/findAllOrderBy/{orderBy}")
-    public List<Task> findAllOrderBy(@PathVariable(value = "orderBy") String orderBy) {
+    @GetMapping("/findAllOrderBy/{sortByDir}")
+    public List<Task> findAllOrderBy(@PathVariable(value = "sortByDir") String sortByDir) {
 
-        String order = orderBy;
+        String order = sortByDir;
         List<Task> orderedTasks;
         switch (order) {
 
@@ -58,15 +55,18 @@ public class TaskController {
             default:
                 orderedTasks = taskRepository.findAll();
         }
-//        TODO implement UI side logic to build sort request
-//        return orderedTasks;
-
-        return taskRepository.findAllByOrderByFirstNameAsc();
+        return orderedTasks;
     }
 
 
     @PostMapping("/create")
     public Task createTask(@RequestBody Task task) {
+
+        return taskRepository.save(task);
+    }
+
+    @PutMapping("/update")
+    public Task updateTask(@RequestBody Task task) {
 
         return taskRepository.save(task);
     }
@@ -90,7 +90,7 @@ public class TaskController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<?> deleteTAsk(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<?> deleteTask(@PathVariable(value = "id") Long id) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("task", "id", id));
 
         taskRepository.delete(task);

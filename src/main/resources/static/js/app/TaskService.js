@@ -6,24 +6,24 @@
             var service = {};
 
             service.getTaskById = function (taskId) {
-                var url = "/task/findById/" + taskId;
+                var url = "/tasks/findById/" + taskId;
                 return $http.get(url);
             }
 
             service.getAllTasks = function () {
-                return $http.get("/task/findAll");
+                return $http.get("/tasks/findAll");
             }
 
             service.saveTask = function (task) {
-                return $http.post("/task/create", task);
+                return $http.post("/tasks/create", task);
             }
 
             service.getTitles = function() {
                 return $http.get("/titles");
             }
 
-            service.getAllOrderBy = function(orderBy) {
-                return $http.get("/task/findAllOrderBy/" + orderBy);
+            service.getAllOrderBy = function(sortByDir) {
+                return $http.get("/tasks/findAllOrderBy/" + sortByDir);
             }
 
             return service;

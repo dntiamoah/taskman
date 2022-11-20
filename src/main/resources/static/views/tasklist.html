@@ -5,7 +5,7 @@
 <div class="alert alert-danger" role="alert" ng-if="ListController.errorMessage">{{errorMessage}}</div>
 
 <!-- Filter -->
-<div class="input-group mb-3">
+<div class="input-group col-sm-12">
     <div class="input-group-prepend">
         <label for="orderBy" class="col-sm-2 input-group-text">Order By</label>
     </div>
@@ -15,6 +15,17 @@
         <option value="LastName">Last Name</option>
         <option value="ScheduledDate">Scheduled Date</option>
     </select>
+</div>
+
+<div class="form-check">
+    <input class="form-check-input" name="group100" type="radio" id="radioAsc" ng-model="sortDir"
+           ng-change="orderTasks()" checked>
+    <label class="form-check-label" for="radioAsc" value="Asc">Asc</label>
+</div>
+
+<div class="form-check">
+    <input class="form-check-input" name="group100" type="radio" id="radioDsc" ng-model="sortDir">
+    <label class="form-check-label" for="radioDsc" value="Desc">Desc</label>
 </div>
 
 <!-- Table -->
@@ -47,7 +58,13 @@
         <td>
             <button type="button" class="btn btn-info"
                     ng-click="editTask(task)">
-                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> EDIT
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+            </button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-warning"
+                    ng-click="deleteTask(task)">
+                <span class="glyphicon glyphicon-delete" aria-hidden="true"></span> Delete`
             </button>
         </td>
     </tr>
